@@ -1,0 +1,21 @@
+name: deploy website preview
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: amondnet/vercel-action@v20
+        with:
+          github-token: 'deploy_dadosdok20wo0sadsad'
+          vercel-token: 'fLba9xlwlw1UiS3U4Z19uceg'
+          vercel-args: '--prod' #Optional
+          vercel-org-id: 'team_4qeBYdeuIyL4TOjTJfVqHw4X'
+          vercel-project-id: 'prj_lB6bSNemA3FfQtaMyhntLLGZD9aD'
+      - name: preview-url
+        run: |
+          echo ${{ steps.vercel-action.outputs.preview-url }}
