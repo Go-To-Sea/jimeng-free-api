@@ -7,7 +7,6 @@ import { getCredit, receiveCredit, request } from "./core.ts";
 import logger from "@/lib/logger.ts";
 
 const DEFAULT_ASSISTANT_ID = "513695";
-const DRAFT_VERSION = "3.0.2";
 export const DEFAULT_MODEL = "jimeng-video-s2.0";
 const MODEL_MAP = {
   "jimeng-video-s2.0": 2
@@ -89,6 +88,7 @@ export async function generateVideo(
               fps,
               duration_ms: duration,
               model: modelId,
+              video_mode: modelId,
               template_id: ""
             }
           ],
@@ -107,6 +107,58 @@ export async function generateVideo(
       },
     }
   );
+  logger.info(`请求URL: /mweb/v1/generate_video`);
+  logger.info(`请求参数: ${JSON.stringify({
+    params: {
+      babi_param: {
+        scenario: "image_video_generation",
+        feature_key: "image_to_video",
+        feature_entrance: "to_image",
+        feature_entrance_detail: "to_image-image_to_video"
+      }
+    },
+    data: {
+      submit_id: util.uuid(),
+      task_extra: {
+        promptSource: "custom",
+        originSubmitId: util.uuid(),
+        isDefaultSeed: 1,
+        originTemplateId: "",
+        imageNameMapping: {},
+        isUseAiGenPrompt: false,
+        batchNumber: 1
+      },
+      http_common_info: { aid: DEFAULT_ASSISTANT_ID },
+      input: {
+        seed,
+        video_gen_inputs: [{
+          prompt,
+          first_frame_image: {
+            width,
+            height,
+            image_uri: imageUri,
+            format: "jpeg",
+            aigc_image: { item_id: util.uuid() }
+          },
+          fps,
+          duration_ms: duration,
+          video_mode: modelId,
+          template_id: ""
+        }],
+        priority: 0,
+        model_req_key: "dreamina_ic_generate_video_model_vgfm_lite"
+      },
+      mode: "workbench",
+      history_option: {},
+      commerce_info: {
+        resource_id: "generate_video",
+        resource_id_type: "str",
+        resource_sub_type: "aigc",
+        benefit_type: "basic_video_operation_vgfm_lite"
+      },
+      client_trace_data: {}
+    }
+  }, null, 2)}`);
 
   const taskId = aigc_data.task_id;
   if (!taskId)
