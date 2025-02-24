@@ -322,14 +322,27 @@ Authorization: Bearer [sessionid]
 }
 ```
 ## 根据参考图片生成图像
+
+根据参考图片生成新图像的接口。
+
+**POST /v1/images/referenceGenerations**
+
+完整请求URL示例：
+```
 http://127.0.0.1:8000/v1/images/referenceGenerations
+```
+
 header 需要设置 Authorization 头部：
 ```
 Authorization: Bearer [sessionid]
+```
+
+请求数据：
+```json
 {
   "model": "jimeng-2.0-pro",
   "prompt": "​请把参考图片变高清，并配上合适的当时时代背景的颜色。",
-  "image_uri": "tos-cn-i-tb4s082cfz/649a21fc0d184a47a8f513f4fa2aa329",
+  "imageUri": "tos-cn-i-tb4s082cfz/649a21fc0d184a47a8f513f4fa2aa329",
   "negativePrompt": "",
   "width": 1024,
   "height": 1024,

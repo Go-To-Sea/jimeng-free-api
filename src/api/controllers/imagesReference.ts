@@ -43,8 +43,8 @@ export async function generateReferenceImages(
           JSON.stringify({
             scenario: "image_video_generation",
             feature_key: "to_image_referenceimage_generate",
-            feature_entrance: "to_video",
-            feature_entrance_detail: "to_video-referenceimage-byte_edit",
+            feature_entrance: "to_image",
+            feature_entrance_detail: "to_image-referenceimage-byte_edit"
           })
         ),
       },
@@ -139,6 +139,93 @@ export async function generateReferenceImages(
       },
     }
   );
+  logger.info(`请求URL: /mweb/v1/aigc_draft/generate`);
+  logger.info(`请求参数: ${JSON.stringify({
+    params: {
+      babi_param: {
+        scenario: "image_video_generation",
+        feature_key: "to_image_referenceimage_generate",
+        feature_entrance: "to_image",
+        feature_entrance_detail: "to_image-referenceimage-byte_edit"
+      }
+    },
+    data: {
+      extend: { root_model: model, template_id: "" },
+      submit_id: util.uuid(),
+      draft_content: {
+        type: "draft",
+        id: util.uuid(),
+        min_version: DRAFT_VERSION,
+        min_features: [],
+        is_from_tsn: true,
+        version: "3.1.1",
+        main_component_id: componentId,
+        component_list: [{
+          type: "image_base_component",
+          id: componentId,
+          min_version: DRAFT_VERSION,
+          generate_type: "blend",
+          aigc_mode: "workbench",
+          abilities: {
+            type: "",
+            id: util.uuid(),
+            blend: {
+              type: "",
+              id: util.uuid(),
+              core_param: {
+                type: "",
+                id: util.uuid(),
+                model,
+                prompt: "##" + prompt,
+                sample_strength: sampleStrength,
+                image_ratio: 1,
+                large_image_info: {
+                  type: "",
+                  id: util.uuid(),
+                  height,
+                  width,
+                },
+              },
+              ability_list: [{
+                type: "",
+                id: util.uuid(),
+                name: "byte_edit",
+                image_uri_list: [imageUri],
+                image_list: [{
+                  type: "image",
+                  id: util.uuid(),
+                  source_from: "upload",
+                  platform_type: 1,
+                  name: "",
+                  image_uri: imageUri,
+                  width: 0,
+                  height: 0,
+                  format: "",
+                  uri: imageUri,
+                }],
+                strength: sampleStrength,
+              }],
+              history_option: {
+                type: "",
+                id: util.uuid(),
+              },
+              prompt_placeholder_info_list: [{
+                type: "",
+                id: util.uuid(),
+                ability_index: 0,
+              }],
+              postedit_param: {
+                type: "",
+                id: util.uuid(),
+                generate_type: 0,
+              },
+            },
+          },
+        }],
+      },
+      http_common_info: { aid: DEFAULT_ASSISTANT_ID }
+    }
+  }, null, 2)}`);
   const historyId = aigc_data.history_record_id;
   if (!historyId)
     throw new APIException(EX.API_IMAGE_GENERATION_FAILED, "记录ID不存在");

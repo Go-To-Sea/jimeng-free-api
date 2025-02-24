@@ -13,7 +13,7 @@ export default {
       request
         .validate("body.model", v => _.isUndefined(v) || _.isString(v))
         .validate("body.prompt", _.isString)
-        .validate("body.image_uri", v => _.isString(v) && v.length > 0)
+        .validate("body.imageUri", v => _.isString(v) && v.length > 0)
         .validate("body.width", v => _.isUndefined(v) || _.isFinite(v))
         .validate("body.height", v => _.isUndefined(v) || _.isFinite(v))
         .validate("body.sample_strength", v => _.isUndefined(v) || _.isFinite(v))
