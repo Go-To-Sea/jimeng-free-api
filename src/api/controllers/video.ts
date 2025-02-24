@@ -87,7 +87,6 @@ export async function generateVideo(
               },
               fps,
               duration_ms: duration,
-              model: modelId,
               video_mode: modelId,
               template_id: ""
             }
