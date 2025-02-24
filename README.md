@@ -321,6 +321,25 @@ Authorization: Bearer [sessionid]
   ]
 }
 ```
+## 根据参考图片生成图像
+http://127.0.0.1:8000/v1/images/referenceGenerations
+header 需要设置 Authorization 头部：
+```
+Authorization: Bearer [sessionid]
+{
+  "model": "jimeng-2.0-pro",
+  "prompt": "​请把参考图片变高清，并配上合适的当时时代背景的颜色。",
+  "image_uri": "tos-cn-i-tb4s082cfz/649a21fc0d184a47a8f513f4fa2aa329",
+  "negativePrompt": "",
+  "width": 1024,
+  "height": 1024,
+  "sample_strength": 0.5,
+   "blend_ratio": 1,
+  "feature_key":"to_image_referenceimage_generate"
+}
+
+
+
 
 ## Star History
 

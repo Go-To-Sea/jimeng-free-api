@@ -6,6 +6,7 @@ import chat from "./chat.ts";
 import ping from "./ping.ts";
 import token from './token.js';
 import models from './models.ts';
+import referenceImages from './imagesReference.ts';
 
 export default [
     {
@@ -25,5 +26,6 @@ export default [
     chat,
     ping,
     token,
-    models
+    models,
+    referenceImages
 ];
