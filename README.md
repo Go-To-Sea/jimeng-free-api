@@ -282,11 +282,17 @@ Authorization: Bearer [sessionid]
 ```
 
 请求数据：
+const MODEL_MAP = {
+  "jimeng-image-2.1": "high_aes_general_v21_L:general_v2.1_L",
+  "jimeng-image-2.0-pro": "high_aes_general_v20_L:general_v2.0_L",
+  "jimeng-image-2.0": "high_aes_general_v20:general_v2.0",
+  //"jimeng-image-1.4": "high_aes_general_v14:general_v1.4",
+  "jimeng-image-xl-pro": "text2img_xl_sft",
+};
 
 ```json
 {
-  // jimeng-2.1（默认） / jimeng-2.0-pro / jimeng-2.0 / jimeng-1.4 / jimeng-xl-pro
-  "model": "jimeng-2.1",
+  "model": "jimeng-image-2.1",
   // 提示词，必填
   "prompt": "少女祈祷中...",
   // 反向提示词，默认空字符串
@@ -336,7 +342,10 @@ header 需要设置 Authorization 头部：
 ```
 Authorization: Bearer [sessionid]
 ```
-
+请求数据：
+const MODEL_MAP = {
+  "jimeng-image-2.0-pro": "high_aes_general_v20_L:general_v2.0_L"
+};
 请求数据：
 ```json
 {

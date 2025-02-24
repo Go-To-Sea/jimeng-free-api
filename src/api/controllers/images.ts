@@ -10,11 +10,11 @@ const DEFAULT_ASSISTANT_ID = "513695";
 export const DEFAULT_MODEL = "jimeng-2.1";
 const DRAFT_VERSION = "3.0.2";
 const MODEL_MAP = {
-  "jimeng-2.1": "high_aes_general_v21_L:general_v2.1_L",
-  "jimeng-2.0-pro": "high_aes_general_v20_L:general_v2.0_L",
-  "jimeng-2.0": "high_aes_general_v20:general_v2.0",
-  "jimeng-1.4": "high_aes_general_v14:general_v1.4",
-  "jimeng-xl-pro": "text2img_xl_sft",
+  "jimeng-image-2.1": "high_aes_general_v21_L:general_v2.1_L",
+  "jimeng-image-2.0-pro": "high_aes_general_v20_L:general_v2.0_L",
+  "jimeng-image-2.0": "high_aes_general_v20:general_v2.0",
+  //"jimeng-image-1.4": "high_aes_general_v14:general_v1.4",
+  "jimeng-image-xl-pro": "text2img_xl_sft",
 };
 
 export function getModel(model: string) {

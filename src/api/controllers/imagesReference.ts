@@ -5,10 +5,17 @@ import EX from "@/api/consts/exceptions.ts";
 import util from "@/lib/util.ts";
 import { getCredit, receiveCredit, request } from "./core.ts";
 import logger from "@/lib/logger.ts";
-import { getModel, DEFAULT_MODEL } from "./images.ts";
 
 const DEFAULT_ASSISTANT_ID = "513695";
 const DRAFT_VERSION = "3.0.2";
+export const DEFAULT_MODEL = "jimeng-image-2.0-pro";
+const MODEL_MAP = {
+  "jimeng-image-2.0-pro": "high_aes_general_v20_L:general_v2.0_L"
+};
+
+export function getModel(model: string) {
+  return MODEL_MAP[model] || MODEL_MAP[DEFAULT_MODEL];
+}
 
 export async function generateReferenceImages(
   _model: string,
