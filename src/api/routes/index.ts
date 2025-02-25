@@ -7,6 +7,7 @@ import ping from "./ping.ts";
 import token from './token.js';
 import models from './models.ts';
 import referenceImages from './imagesReference.ts';
+import upload from './upload.ts';
 import video from './video.ts';
 
 export default [
@@ -29,5 +30,6 @@ export default [
     token,
     models,
     referenceImages,
+    upload,
     video
 ];

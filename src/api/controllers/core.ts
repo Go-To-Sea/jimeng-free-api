@@ -151,7 +151,7 @@ export async function request(
   );
   const response = await axios.request({
     method,
-    url: `https://jimeng.jianying.com${uri}`,
+    url: uri.includes('http') ? uri : `https://jimeng.jianying.com${uri}`,
     params: {
       aid: DEFAULT_ASSISTANT_ID,
       device_platform: "web",

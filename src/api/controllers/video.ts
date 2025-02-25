@@ -56,6 +56,11 @@ export async function generateVideo(
             feature_entrance_detail: "to_image-image_to_video",
           })
         ),
+        aid: DEFAULT_ASSISTANT_ID,
+        device_platform: "web",
+        region: "CN",
+        web_id: "7473380759261890111",
+        a_bogus: "Df4Qvc2KMsm1Pcy-T7kz97Cjcom0YW4ngZENesG9etLz"
       },
       data: {
         submit_id: util.uuid(),

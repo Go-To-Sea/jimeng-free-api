@@ -20,6 +20,12 @@
   "author": "Vinlic",
   "license": "ISC",
   "dependencies": {
+    "@aws-crypto/sha256-js": "^5.2.0",
+    "@aws-sdk/client-s3": "^3.750.0",
+    "@aws-sdk/protocol-http": "^3.370.0",
+    "@aws-sdk/signature-v4": "^3.370.0",
+    "@aws-sdk/signature-v4-crt": "^3.750.0",
+    "@aws-sdk/types": "^3.734.0",
     "axios": "^1.6.7",
     "colors": "^1.4.0",
     "crc-32": "^1.2.2",
@@ -48,4 +54,3 @@
     "typescript": "^5.3.3"
   }
 }
-
